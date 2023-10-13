@@ -13,6 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+Route::get('/about', [App\Http\Controllers\WelcomeController::class, 'about']);
+Route::get('/promo', [App\Http\Controllers\WelcomeController::class, 'promo']);
+Route::get('/faq', [App\Http\Controllers\WelcomeController::class, 'faq']);
+Route::get('/contact', [App\Http\Controllers\WelcomeController::class, 'contact']);
+Route::get('/service1', [App\Http\Controllers\WelcomeController::class, 'service1']);
+Route::get('/service2', [App\Http\Controllers\WelcomeController::class, 'service2']);
+Route::get('/service3', [App\Http\Controllers\WelcomeController::class, 'service3']);
+Route::get('/location-service3', [App\Http\Controllers\WelcomeController::class, 'locationservice3']);
+Route::get('/service4', [App\Http\Controllers\WelcomeController::class, 'service4']);
+Route::get('/service5', [App\Http\Controllers\WelcomeController::class, 'service5']);
+
+Route::get('/detail-service1', [App\Http\Controllers\WelcomeController::class, 'detailservice1']);
+Route::get('/deepdetail-service1', [App\Http\Controllers\WelcomeController::class, 'deepdetailservice1']);
+Route::get('/detail-service2', [App\Http\Controllers\WelcomeController::class, 'detailservice2']);
+Route::get('/detail-services2', [App\Http\Controllers\WelcomeController::class, 'detailServices2']);

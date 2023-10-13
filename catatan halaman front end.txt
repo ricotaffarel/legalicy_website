@@ -1,0 +1,44 @@
+Halaman home/index
+	guess>welcome
+
+Halaman promo
+	guess>promo
+
+Halaman about
+	guess>about
+
+Halaman faq
+	guess>faq
+
+Halaman contact
+	guess>contact
+
+Halaman service-1 (Pendirian Perusahaan, Pembuatan dan Perubahan Dokumen Perusahaan, Perizinan usaha, ijin haki)
+	geuss>services>service1>service1
+
+Halaman detail service-1 / detail layanan pendirian perusahaan (Pendirian pt, cv, dll)
+	guess>services>service1>detailservice
+
+Halaman deep detail service-1 (Detailnya pendirian pt, cv, dll)
+	guess>services>service1>deepdetail-service
+
+Halaman service-2 (Perizinan Khusus dan layanan lainnya)
+	guess>services>service2>service2
+
+Halaman detail service-2 (Detail untuk perizinan khusus)
+	guess>services>service2>detailservice2
+
+Halaman detail service-2 (Detail untuk layanan perizinan khusus)
+	guess>services>service2>detail-service2
+
+Halaman service-3 (Virtual office)
+	guess>services>service3
+
+Halaman Lokasi service3 (Lokasi Virtual Office)
+	guess>services>service3>location-service3
+
+Halaman service-4 (Izin Hukum)
+	guess>services>service4
+
+Halaman service-5 (Digital Marketing)
+	guess>services>service5
