@@ -34,3 +34,7 @@ Route::get('/deepdetail-service1', [App\Http\Controllers\WelcomeController::clas
 Route::get('/detail-service2', [App\Http\Controllers\WelcomeController::class, 'detailservice2']);
 Route::get('/detail-services2', [App\Http\Controllers\WelcomeController::class, 'detailServices2']);
 
+Route::get('/test', function () {
+    return view('welcome');
+});
+
