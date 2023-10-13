@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/admin', function () {
+    return view('admin.test');
+});
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 Route::get('/about', [App\Http\Controllers\WelcomeController::class, 'about']);
@@ -34,17 +34,3 @@ Route::get('/deepdetail-service1', [App\Http\Controllers\WelcomeController::clas
 Route::get('/detail-service2', [App\Http\Controllers\WelcomeController::class, 'detailservice2']);
 Route::get('/detail-services2', [App\Http\Controllers\WelcomeController::class, 'detailServices2']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test', function () {
-    return view('welcome');
-});
-
-Route::get('/sajshjahsaj', function () {
-    return view('welcome');
-});
-Route::get('/sajshjaksjkajsahsaj', function () {
-    return view('welcome');
-});
