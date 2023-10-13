@@ -38,7 +38,16 @@ Route::get('/detail-services2', [App\Http\Controllers\WelcomeController::class, 
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
 Route::get('/test', function () {
     return view('welcome');
 });
 >>>>>>> 801d0cf (update landing)
+=======
+Route::get('/sajshjahsaj', function () {
+    return view('welcome');
+});
+Route::get('/sajshjaksjkajsahsaj', function () {
+    return view('welcome');
+});
+>>>>>>> 227afa4 (init)
