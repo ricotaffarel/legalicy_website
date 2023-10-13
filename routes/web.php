@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ChoiseUsController;
+use App\Http\Controllers\SliderController;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -44,4 +46,6 @@ Route::get('/detail-services2', [App\Http\Controllers\WelcomeController::class, 
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('choiseus', ChoiseUsController::class);
+    Route::resource('slider', SliderController::class);
 });

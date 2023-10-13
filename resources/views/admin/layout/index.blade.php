@@ -74,7 +74,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/documentation/documentation.html">
+                        <a class="nav-link" href="{{ Route('slider.index') }}">
                             <i class="icon-paper menu-icon"></i>
                             <span class="menu-title">Slider</span>
                         </a>
@@ -102,7 +102,7 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Category
                                         Service</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Choise
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('choiseus.index') }}">Choise
                                         Us</a></li>
                             </ul>
                         </div>
@@ -152,6 +152,18 @@
     <script src={{ asset('backend/js/dashboard.js') }}></script>
     <script src={{ asset('backend/js/Chart.roundedBarCharts.js') }}></script>
     <!-- End custom js for this page-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#image').on('change', function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            });
+        });
+    </script>
 </body>
 
 </html>
