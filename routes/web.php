@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-<<<<<<< HEAD
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -34,20 +33,18 @@ Route::get('/detail-service1', [App\Http\Controllers\WelcomeController::class, '
 Route::get('/deepdetail-service1', [App\Http\Controllers\WelcomeController::class, 'deepdetailservice1']);
 Route::get('/detail-service2', [App\Http\Controllers\WelcomeController::class, 'detailservice2']);
 Route::get('/detail-services2', [App\Http\Controllers\WelcomeController::class, 'detailServices2']);
-=======
+
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
+
 Route::get('/test', function () {
     return view('welcome');
 });
->>>>>>> 801d0cf (update landing)
-=======
+
 Route::get('/sajshjahsaj', function () {
     return view('welcome');
 });
 Route::get('/sajshjaksjkajsahsaj', function () {
     return view('welcome');
 });
->>>>>>> 227afa4 (init)
