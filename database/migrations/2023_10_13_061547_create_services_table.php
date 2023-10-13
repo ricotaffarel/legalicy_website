@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->uuid('category_id');
+            $table->char('title', 100);
+            $table->char('desc');
+            $table->string('image');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('service_categories')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
