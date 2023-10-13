@@ -19,6 +19,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href={{ asset('backend/css/vertical-layout-light/style.css') }}>
     <!-- endinject -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="shortcut
         icon" href={{ asset('backend/images/favicon.png') }} />
 </head>
@@ -30,8 +31,8 @@
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo mr-5" href="index.html"><img
                         src={{ asset('backend/images/logo.svg') }} class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src={{ asset('backend/images/logo-mini.svg') }}
-                        alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img
+                        src={{ asset('backend/images/logo-mini.svg') }} alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -68,7 +69,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href={{ route('admin.dashboard') }}>
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -80,15 +81,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/documentation/documentation.html">
+                        <a class="nav-link" href={{ route('admin.discount.index') }}>
                             <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">Service</span>
+                            <span class="menu-title">Discount</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/documentation/documentation.html">
+                        <a class="nav-link" href={{ route('admin.service.index') }}>
                             <i class="icon-paper menu-icon"></i>
-                            <span class="menu-title">Discount</span>
+                            <span class="menu-title">Service</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -100,7 +101,8 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Category
+                                <li class="nav-item"> <a class="nav-link"
+                                        href={{ route('admin.service.category.index') }}>Category
                                         Service</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Choise
                                         Us</a></li>
