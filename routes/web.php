@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', function () {
-    return view('admin.test');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login', function () {
+        return view('admin.login');
+    });
+    Route::post('/login', [AuthController::class, 'login'])->name('dologin');
 });
+Route::get('/redirect', [AuthController::class, 'redirect']);
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 Route::get('/about', [App\Http\Controllers\WelcomeController::class, 'about']);
@@ -38,3 +46,6 @@ Route::get('/test', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+});

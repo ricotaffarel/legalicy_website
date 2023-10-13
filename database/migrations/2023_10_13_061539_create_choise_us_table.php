@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('choise_us', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->char('title', 100);
+            $table->char('desc');
+            $table->string('image');
             $table->timestamps();
         });
     }
