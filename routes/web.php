@@ -2,9 +2,16 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+<<<<<<< HEAD
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\ServiceCategoriesController;
 use App\Http\Controllers\ServiceController;
+=======
+use App\Http\Controllers\ChoiseUsController;
+use App\Http\Controllers\SliderController;
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\AdminMiddleware;
+>>>>>>> origin/dev
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,7 +52,12 @@ Route::get('/detail-services2', [App\Http\Controllers\WelcomeController::class, 
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+<<<<<<< HEAD
     Route::resource('service', ServiceController::class)->names('admin.service');
     Route::resource('service-category', ServiceCategoriesController::class)->names('admin.service.category');
     Route::resource('discount', DiscountController::class)->names('admin.discount');
+=======
+    Route::resource('choiseus', ChoiseUsController::class);
+    Route::resource('slider', SliderController::class);
+>>>>>>> origin/dev
 });
