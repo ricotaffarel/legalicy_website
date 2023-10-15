@@ -25,14 +25,14 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Desc</th>
-                                        <th>Action</th>
+                                        <th>Gambar</th>
+                                        <th>Judul</th>
+                                        <th>Deskripsi</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($sliders as $slider)
+                                    @foreach ($sliders as $slider)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
@@ -56,11 +56,7 @@
                                                 {{-- <button onclick="handleDelete({{ $slider->id }})" type="button" data-bs-toggle="modal" data-bs-target="#danger" value="{{ $slider->id }}" class=" btn btn-danger fw-semibold">Delete</button> --}}
                                             </td>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="5" class="text-center">Data not found</td>
-                                        </tr>
-                                    @endforelse
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
