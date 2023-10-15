@@ -49,9 +49,9 @@ Route::get('/detail-services2', [App\Http\Controllers\WelcomeController::class, 
 
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::resource('service', ServiceController::class)->names('admin.service');
+    Route::resource('services', ServiceController::class)->names('admin.service');
     Route::resource('service-category', ServiceCategoriesController::class)->names('admin.service.category');
     Route::resource('discount', DiscountController::class)->names('admin.discount');
-    Route::resource('choiseus', ChoiseUsController::class);
-    Route::resource('slider', SliderController::class);
+    Route::resource('choiseus', ChoiseUsController::class)->names('admin.choiseus');
+    Route::resource('slider', SliderController::class)->names('admin.slider');
 });

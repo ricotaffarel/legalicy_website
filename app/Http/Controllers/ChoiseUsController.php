@@ -7,9 +7,18 @@ use App\Models\ChoiseUs;
 
 class ChoiseUsController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        $choises = ChoiseUs::all();
+        $search = $request->input('search');
+        $query = ChoiseUs::query();
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'LIKE', "%$search%");
+                $q->where('desc', 'LIKE', "%$search%");
+            });
+        }
+
+        $choises = $query->latest()->paginate(10);
         return view('admin.choiseUs.index', compact('choises'));
     }
 
@@ -22,28 +31,31 @@ class ChoiseUsController extends Controller
     //controller create
     function store(Request $request)
     {
-        $messages=[
+        $messages = [
             'title.required' => 'Nama Keunggulan harus diisi',
             'desc.required' => 'Deskripsi Keunggulan harus diisi',
             'image.required' => 'Deskripsi Keunggulan harus diisi',
         ];
 
-        $validateData = $request->validate([
-            'title' => 'required',
-            'desc' => 'required',
-            'image' => 'required',
-        ], $messages
+        $validateData = $request->validate(
+            [
+                'title' => 'required',
+                'desc' => 'required',
+                'image' => 'required',
+            ],
+            $messages
         );
 
         $data = ChoiseUs::create($validateData);
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $request->file('image')->move('choisesUs/', $request->file('image')->getclientOriginalName());
             $data->image = $request->file('image')->getclientOriginalName();
             $data->save();
         }
- 
-        return redirect('/admin/choiseus')->with('message', "Data has been created");;
+
+        return redirect('/admin/choiseus')->with('message', "Data has been created");
+        ;
     }
 
     //view update
@@ -59,19 +71,21 @@ class ChoiseUsController extends Controller
         $data = ChoiseUs::find($id);
         $data->update($request->all());
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $request->file('image')->move('choisesUs/', $request->file('image')->getclientOriginalName());
             $data->image = $request->file('image')->getclientOriginalName();
             $data->save();
         }
 
-        return redirect('/admin/choiseus')->with('message', "Data has been updated");;
+        return redirect('/admin/choiseus')->with('message', "Data has been updated");
+        ;
     }
 
     //delete
     function destroy(string $id)
     {
         ChoiseUs::destroy($id);
-        return redirect('/admin/choiseus')->with('message', "Data has been deleted");;
+        return redirect('/admin/choiseus')->with('message', "Data has been deleted");
+        ;
     }
 }

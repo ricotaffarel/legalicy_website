@@ -10,6 +10,8 @@
     <link rel="stylesheet" href={{ asset('backend/vendors/feather/feather.css') }}>
     <link rel="stylesheet" href={{ asset('backend/vendors/ti-icons/css/themify-icons.css') }}>
     <link rel="stylesheet" href={{ asset('backend/vendors/css/vendor.bundle.base.css') }}>
+    <link rel="stylesheet" href={{ asset('backend/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}>
+    <link rel="stylesheet" href={{ asset('backend/vendors/select2/select2.min.css') }}>
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href={{ asset('backend/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}>
@@ -19,7 +21,9 @@
     <!-- inject:css -->
     <link rel="stylesheet" href={{ asset('backend/css/vertical-layout-light/style.css') }}>
     <!-- endinject -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
     <link rel="shortcut
         icon" href={{ asset('backend/images/favicon.png') }} />
 </head>
@@ -75,7 +79,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ Route('slider.index') }}">
+                        <a class="nav-link" href="{{ Route('admin.slider.index') }}">
                             <i class="icon-paper menu-icon"></i>
                             <span class="menu-title">Slider</span>
                         </a>
@@ -104,7 +108,8 @@
                                 <li class="nav-item"> <a class="nav-link"
                                         href={{ route('admin.service.category.index') }}>Category
                                         Service</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('choiseus.index') }}">Choise
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="{{ route('admin.choiseus.index') }}">Choise
                                         Us</a></li>
                             </ul>
                         </div>
@@ -140,6 +145,8 @@
     <script src={{ asset('backend/vendors/chart.js/Chart.min.js') }}></script>
     <script src={{ asset('backend/vendors/datatables.net/jquery.dataTables.js') }}></script>
     <script src={{ asset('backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}></script>
+    <script src={{ asset('backend/vendors/select2/select2.min.js') }}></script>
+    <script src={{ asset('backend/vendors/typeahead.js/typeahead.bundle.min.js') }}></script>
     <script src={{ asset('backend/js/dataTables.select.min.js') }}></script>
 
     <!-- End plugin js for this page -->
@@ -149,6 +156,10 @@
     <script src={{ asset('backend/js/template.js') }}></script>
     <script src={{ asset('backend/js/settings.js') }}></script>
     <script src={{ asset('backend/js/todolist.js') }}></script>
+
+    <script src="{{asset('backend/js/file-upload.js')}}"></script>
+    <script src="{{asset('backend/js/typeahead.js')}}"></script>
+    <script src="{{asset('backend/js/select2.js')}}"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src={{ asset('backend/js/dashboard.js') }}></script>

@@ -2,38 +2,28 @@
 @section('content')
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-md-12 grid-margin">
-                <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">Data Service Category</h3>
-                        <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                                class="text-primary">3 unread alerts!</span></h6>
-                    </div>
-                    <div class="col-12 col-xl-4">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Recipient's username"
-                                aria-label="Recipient's username">
-                            <div class="input-group-append">
-                                <button class="btn btn-sm btn-primary" type="button">Search</button>
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Form Service Category</h4>
+                        <form class="forms-sample" method="POST" action="{{ Route('admin.service.category.store') }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-3 col-form-label">Judul</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ old('name') }}" id="name" name="name"
+                                        placeholder="Masukkan Judul">
+                                    @error('name')
+                                        <div class="invalid invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <a href="{{ Route('admin.service.category.index') }}" class="btn btn-light">Cancel</a>
+                        </form>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Add Data</h4>
-                    <form action={{ route('admin.service.category.store') }} method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="exampleInputUsername1">Category Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Category Name">
-                        </div>
-                        <button class="btn btn-primary" type="submit">Add Data</button>
-                        <a href="{{route('admin.service.category.index')}}" class="btn btn-light" >Cancel</a>
-                    </form>
                 </div>
             </div>
         </div>

@@ -30,22 +30,19 @@ class ServiceCategoriesController extends Controller
     //controller create
     function store(Request $request)
     {
-        try {
-            $request->validate([
-                'name' => 'required|max:100',
-            ], [
-                'name.required' => 'Category name is required',
-                'name.max' => 'Category name maxsimum :max 100 caracter.',
-            ]);
+        $request->validate([
+            'name' => 'required|max:100',
+        ], [
+            'name.required' => 'Category name is required',
+            'name.max' => 'Category name maxsimum :max 100 caracter.',
+        ]);
 
-            $create = new ServiceCategory();
-            $create->title = $request->name;
-            $create->save();
+        $create = new ServiceCategory();
+        $create->title = $request->name;
+        $create->save();
 
-            return redirect('admin/service-category')->with('message', "Data has been created");
-        } catch (\Exception $e) {
-            return redirect('admin/service-category');
-        }
+        return redirect('admin/service-category')->with('message', "Data has been created");
+
     }
 
     //view update
@@ -58,22 +55,20 @@ class ServiceCategoriesController extends Controller
     //controller update
     function update(Request $request, $id)
     {
-        try {
-            $request->validate([
-                'name' => 'required|max:100',
-            ], [
-                'name.required' => 'Category name is required',
-                'name.max' => 'Category name maxsimum :max 100 caracter.',
-            ]);
+        $request->validate([
+            'name' => 'required|max:100',
+        ], [
+            'name.required' => 'Category name is required',
+            'name.max' => 'Category name maxsimum :max 100 caracter.',
+        ]);
 
-            $update = ServiceCategory::find($id);
-            $update->title = $request->name;
-            $update->save();
+        $update = ServiceCategory::find($id);
+        $update->title = $request->name;
+        $update->save();
 
-            return redirect('admin/service-category')->with('message', "Data has been update");;
-        } catch (\Exception $e) {
-            return redirect('admin/service-category');
-        }
+        return redirect('admin/service-category')->with('message', "Data has been update");
+        ;
+
     }
 
     //delete
@@ -82,7 +77,8 @@ class ServiceCategoriesController extends Controller
         try {
             $destroy = ServiceCategory::find($id);
             $destroy->delete();
-            return redirect('admin/service-category')->with('message', "Data has been deleted");;
+            return redirect('admin/service-category')->with('message', "Data has been deleted");
+            ;
         } catch (\Exception $th) {
             return redirect('admin/service-category');
         }

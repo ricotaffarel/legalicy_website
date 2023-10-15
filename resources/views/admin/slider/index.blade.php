@@ -2,99 +2,107 @@
 @section('content')
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-8">
-                                <h4 class="card-title">Slider Table</h4>
-                            </div>
-                            <div class="col-4">
-                                <a href="{{ Route('slider.create') }}" class="btn btn-primary float-right">Tambah Data</a>
-                            </div>
-                        </div>
-                        <div class="row-lg-12 mt-3">
-                            @if (session()->has('message'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('message') }}
+            <div class="col-md-12 grid-margin">
+                <div class="row">
+                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                        <h3 class="font-weight-bold">Data Slider</h3>
+                        <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
+                                class="text-primary">3 unread alerts!</span></h6>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <form action={{ route('admin.slider.index') }} method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-sm btn-primary" type="submit">Search</button>
                                 </div>
-                            @endif
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Slider Table</h4>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
+                        <div class="col-4">
+                            <a class="btn btn-primary float-right" href={{ route('admin.slider.create') }}>Add
+                                Data</a>
+                        </div>
+                    </div>
+                    <div class="row-lg-12 mt-3">
+                        @if (session()->has('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Desc</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($sliders as $item)
                                     <tr>
-                                        <th>No</th>
-                                        <th>Gambar</th>
-                                        <th>Judul</th>
-                                        <th>Deskripsi</th>
-                                        <th>Aksi</th>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td> <img src="{{ asset('sliders/' . $item->image) }}" alt=""
+                                                class="img-fluid"
+                                                style="max-width: 200px; max-height: 100px; border-radius:0;"></td>
+                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->desc }}</td>
+                                        <td><a class="btn btn-warning" style="margin-right: 10px"
+                                                href={{ route('admin.slider.edit', $item->id) }}>Edit</a>
+                                            <a class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#modaldelete">Hapus</a>
+
+                                            <div class="modal fade" id="modaldelete" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure
+                                                                delete this data ?</h5>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <form action={{ route('admin.slider.destroy', $item->id) }}
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger" type="submit">Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($sliders as $slider)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>
-                                                <img src="{{ asset('sliders/' . $slider->image) }}" alt=""
-                                                    class="img-fluid"
-                                                    style="max-width: 200px; max-height: 100px; border-radius:0;">
-                                            </td>
-                                            <td>{{ $slider->title }}</td>
-                                            <td>{{ $slider->desc }}</td>
-                                            <td>
-                                                <a href="/admin/slider/{{ $slider->id }}/edit"
-                                                    class="btn btn-warning fw-semibold">Edit</a>
-                                                <form action="/admin/slider/{{ $slider->id }}" method="post"
-                                                    class="d-inline">
-                                                    @csrf <!-- Fitur Security yang berfungsi supaya tidak page expired -->
-                                                    @method('delete')
-                                                    <button class="btn btn-danger fw-semibold "
-                                                        onclick="return confirm('Anda yakin akan menghapus data?');">Delete</button>
-                                                </form>
-                                                {{-- <a href="/admin/slider/{{ $slider->id }}" onclick="return confirm('Apa Anda yakin akan menghapus data?')" class="btn btn-danger">Delete</a> --}}
-                                                {{-- <button onclick="handleDelete({{ $slider->id }})" type="button" data-bs-toggle="modal" data-bs-target="#danger" value="{{ $slider->id }}" class=" btn btn-danger fw-semibold">Delete</button> --}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Data not found</td>
+                                    </tr>
+                                @endforelse
+
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-center" id="pagination">
+                            {{ $sliders->links() }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    {{-- Modal Delete --}}
-    <form action="/admin/slider/{id}" method="POST" class="d-inline">
-        @csrf
-        @method('delete')
-        <div class="modal fade text-left" id="danger" role="dialog" aria-labelledby="myModalLabel35" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="danger">Apakah Anda yakin ingin mengapus data ini?</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="reset" class="btn btn-secondary btn-bg-gradient-x-blue-cyan" data-dismiss="modal"
-                            value="Tutup">
-                        <a id="deleteLink" type="submit" class="btn btn-primary btn-bg-gradient-x-red-pink" name="simpan"
-                            value="danger">Hapus</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    <script>
-        function handleDelete(id) {
-            var link = document.getElementById('deleteLink')
-
-            link.href = "{{ URL::to('admin/slider') }}/" + id
-            $('#danger').modal('show')
-        }
-    </script>
 @endsection

@@ -11,25 +11,25 @@
                     @csrf
                     @method('PUT')
                   <div class="form-group row">
-                    <label for="title" class="col-sm-3 col-form-label">Judul</label>
+                    <label for="title" class="col-sm-3 col-form-label">Title</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $sliders->title) }}" id="title" name="title" placeholder="Masukkan Judul">
+                      <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $sliders->title) }}" id="title" name="title" placeholder="Add Title">
                         @error('title')
                             <div class="invalid invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="desc" class="col-sm-3 col-form-label">Deskripsi</label>
+                    <label for="desc" class="col-sm-3 col-form-label">Desc</label>
                     <div class="col-sm-9">
-                      <textarea type="text" class="form-control @error('desc') is-invalid @enderror" value="{{ old('desc', $sliders->desc) }}" id="desc" name="desc" placeholder="Masukkan Deskripsi">{{ old('desc', $sliders->desc) }}</textarea>
+                      <textarea type="text" class="form-control @error('desc') is-invalid @enderror" value="{{ old('desc') }}" id="desc" name="desc" placeholder="Add Image">{{ old('desc', $sliders->desc) }}</textarea>
                         @error('desc')
                             <div class="invalid invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="image" class="col-sm-3 col-form-label">Gambar</label>
+                    <label for="image" class="col-sm-3 col-form-label">Image</label>
                     <div class="col-sm-9">
                       <input type="file" class="file-upload-info @error('image') is-invalid @enderror" value="{{ old('image', $sliders->image) }}" id="image" name="image" placeholder="Masukkan Gambar">
                       <img src="{{ asset('sliders/' . $sliders->image) }}" class="img-preview img-fluid mt-2" id="image-preview" width="100px">
@@ -49,7 +49,7 @@
                     </div>
                   </div> --}}
                   <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                  <a href="{{ Route('slider.index') }}" class="btn btn-light">Cancel</a>
+                  <a href="{{ Route('admin.slider.index') }}" class="btn btn-light">Cancel</a>
                 </form>
               </div>
             </div>

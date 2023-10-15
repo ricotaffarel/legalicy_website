@@ -19,7 +19,7 @@
                         <div class="card card-light-blue">
                             <div class="card-body">
                                 <p class="mb-4">Slider</p>
-                                <p class="fs-30 mb-2">34040</p>
+                                <p class="fs-30 mb-2">{{$slider}}</p>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         <div class="card card-light-danger">
                             <div class="card-body">
                                 <p class="mb-4">Service</p>
-                                <p class="fs-30 mb-2">47033</p>
+                                <p class="fs-30 mb-2">{{$service}}</p>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="card card-light-blue">
                             <div class="card-body">
                                 <p class="mb-4">Service Category</p>
-                                <p class="fs-30 mb-2">47033</p>
+                                <p class="fs-30 mb-2">{{$service_category}}</p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="card card-light-blue">
                             <div class="card-body">
                                 <p class="mb-4">Choise Us</p>
-                                <p class="fs-30 mb-2">47033</p>
+                                <p class="fs-30 mb-2">{{$choiseus}}</p>
                             </div>
                         </div>
                     </div>
