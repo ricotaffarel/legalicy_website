@@ -7,9 +7,18 @@ use App\Models\Slider;
 
 class SliderController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        $sliders = Slider::all();
+        $search = $request->input('search');
+        $query = Slider::query();
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'LIKE', "%$search%");
+                $q->where('desc', 'LIKE', "%$search%");
+            });
+        }
+
+        $sliders = $query->latest()->paginate(10);
         return view('admin.slider.index', compact('sliders'));
     }
 
@@ -43,7 +52,7 @@ class SliderController extends Controller
             $data->save();
         }
  
-        return redirect('/admin/slider')->with('pesan', 'Data Anda Berhasil di Tambahkan');
+        return redirect('/admin/slider')->with('message', "Data has been created");;
     }
 
     //view update
@@ -65,13 +74,13 @@ class SliderController extends Controller
             $data->save();
         }
 
-        return redirect('/admin/slider')->with('pesan', 'Data Anda Berhasil di Ubah');
+        return redirect('/admin/slider')->with('message', "Data has been updated");;
     }
 
     //delete
     function destroy(string $id)
     {
         Slider::destroy($id);
-        return redirect('/admin/slider')->with('pesan', 'Data Berhasil Dihapus');
+        return redirect('/admin/slider')->with('message', "Data has been deleted");;
     }
 }

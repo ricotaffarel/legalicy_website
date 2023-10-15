@@ -32,6 +32,7 @@
                             <input type="text" class="form-control" id="name" name="name" placeholder="Category Name">
                         </div>
                         <button class="btn btn-primary" type="submit">Add Data</button>
+                        <a href="{{route('admin.service.category.index')}}" class="btn btn-light" >Cancel</a>
                     </form>
                 </div>
             </div>

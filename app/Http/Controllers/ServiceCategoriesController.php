@@ -42,7 +42,7 @@ class ServiceCategoriesController extends Controller
             $create->title = $request->name;
             $create->save();
 
-            return redirect('admin/service-category');
+            return redirect('admin/service-category')->with('message', "Data has been created");
         } catch (\Exception $e) {
             return redirect('admin/service-category');
         }
@@ -70,7 +70,7 @@ class ServiceCategoriesController extends Controller
             $update->title = $request->name;
             $update->save();
 
-            return redirect('admin/service-category');
+            return redirect('admin/service-category')->with('message', "Data has been update");;
         } catch (\Exception $e) {
             return redirect('admin/service-category');
         }
@@ -82,7 +82,7 @@ class ServiceCategoriesController extends Controller
         try {
             $destroy = ServiceCategory::find($id);
             $destroy->delete();
-            return redirect('admin/service-category');
+            return redirect('admin/service-category')->with('message', "Data has been deleted");;
         } catch (\Exception $th) {
             return redirect('admin/service-category');
         }

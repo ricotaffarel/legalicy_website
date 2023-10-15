@@ -15,9 +15,9 @@
                     </div>
                 </div>
                 <div class="row-lg-12 mt-3">
-                    @if(session()->has('pesan'))
+                    @if(session()->has('message'))
                       <div class="alert alert-success" role="alert">
-                          {{ session('pesan')}}
+                          {{ session('message')}}
                       </div>
                     @endif
                 </div>

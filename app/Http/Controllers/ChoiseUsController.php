@@ -43,7 +43,7 @@ class ChoiseUsController extends Controller
             $data->save();
         }
  
-        return redirect('/admin/choiseus')->with('pesan', 'Data Anda Berhasil di Tambahkan');
+        return redirect('/admin/choiseus')->with('message', "Data has been created");;
     }
 
     //view update
@@ -65,13 +65,13 @@ class ChoiseUsController extends Controller
             $data->save();
         }
 
-        return redirect('/admin/choiseus')->with('pesan', 'Data Anda Berhasil di Ubah');
+        return redirect('/admin/choiseus')->with('message', "Data has been updated");;
     }
 
     //delete
     function destroy(string $id)
     {
         ChoiseUs::destroy($id);
-        return redirect('/admin/choiseus')->with('pesan', 'Data Berhasil Dihapus');
+        return redirect('/admin/choiseus')->with('message', "Data has been deleted");;
     }
 }

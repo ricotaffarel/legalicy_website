@@ -25,11 +25,22 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Hoverable Table</h4>
-                    <p class="card-description">
-                        Add class <code>.table-hover</code>
-                    </p>
-                    <a class="btn btn-primary" href={{ route('admin.service.category.create') }}>Add Data</a>
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Service Category Table</h4>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn btn-primary float-right" href={{ route('admin.service.category.create') }}>Add
+                                Data</a>
+                        </div>
+                    </div>
+                    <div class="row-lg-12 mt-3">
+                        @if (session()->has('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -44,7 +55,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->title }}</td>
-                                        <td><a class="btn btn-success" style="margin-right: 10px"
+                                        <td><a class="btn btn-warning" style="margin-right: 10px"
                                                 href={{ route('admin.service.category.edit', $item->id) }}>Edit</a>
                                             <a class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#modaldelete">Hapus</a>
@@ -74,9 +85,9 @@
                                         </td>
                                     </tr>
                                 @empty
-                                <tr>
-                                    <td colspan="3" class="text-center">Data not found</td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-center">Data not found</td>
+                                    </tr>
                                 @endforelse
 
                             </tbody>
