@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ChoiseUs;
+use App\Models\About;
+use App\Models\Contact;
 
 class ChoiseUsController extends Controller
 {
@@ -19,13 +21,17 @@ class ChoiseUsController extends Controller
         }
 
         $choises = $query->latest()->paginate(10);
-        return view('admin.choiseUs.index', compact('choises'));
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.choiseUs.index', compact('choises', 'abouts', 'contacts'));
     }
 
     //view create
     function create()
     {
-        return view('admin.choiseUs.create');
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.choiseUs.create', compact('abouts', 'contacts'));
     }
 
     //controller create
@@ -55,14 +61,16 @@ class ChoiseUsController extends Controller
         }
 
         return redirect('/admin/choiseus')->with('message', "Data has been created");
-        ;
+        
     }
 
     //view update
     function edit(string $id)
     {
         $choises = ChoiseUs::find($id);
-        return view('admin.choiseUs.edit', compact('choises'));
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.choiseUs.edit', compact('choises', 'abouts', 'contacts'));
     }
 
     //controller update

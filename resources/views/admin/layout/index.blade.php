@@ -78,6 +78,22 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
+                    @foreach ($abouts as $about)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ Route('admin.about.edit', $about->id) }}">
+                            <i class="icon-paper menu-icon"></i>
+                            <span class="menu-title">About</span>
+                        </a>
+                    </li>
+                    @endforeach
+                    @foreach ($contacts as $contact)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ Route('admin.contact.edit', $contact->id) }}">
+                            <i class="icon-paper menu-icon"></i>
+                            <span class="menu-title">Contact</span>
+                        </a>
+                    </li>
+                    @endforeach
                     <li class="nav-item">
                         <a class="nav-link" href="{{ Route('admin.slider.index') }}">
                             <i class="icon-paper menu-icon"></i>
@@ -111,6 +127,12 @@
                                 <li class="nav-item"> <a class="nav-link"
                                         href="{{ route('admin.choiseus.index') }}">Choise
                                         Us</a></li>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="{{ route('admin.testimonial.index') }}">Testimonials
+                                        </a></li>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="{{ route('admin.faq.index') }}">FaQ
+                                        </a></li>
                             </ul>
                         </div>
                     </li>
@@ -164,6 +186,7 @@
     <!-- Custom js for this page-->
     <script src={{ asset('backend/js/dashboard.js') }}></script>
     <script src={{ asset('backend/js/Chart.roundedBarCharts.js') }}></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
     <!-- End custom js for this page-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -176,6 +199,14 @@
                 reader.readAsDataURL(e.target.files[0]);
             });
         });
+    </script>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#task-textarea' ) )
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
 </body>
 

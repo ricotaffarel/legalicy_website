@@ -43,7 +43,7 @@
                         <div class="card card-light-danger">
                             <div class="card-body">
                                 <p class="mb-4">Discount</p>
-                                <p class="fs-30 mb-2">47033</p>
+                                <p class="fs-30 mb-2">{{ $discounts }}</p>
                             </div>
                         </div>
                     </div>

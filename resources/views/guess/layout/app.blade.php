@@ -39,30 +39,32 @@
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark text-white-50 py-2 px-0 d-none d-lg-block">
+      @foreach ($contacts as $contact)
       <div class="row gx-0 align-items-center">
         <div class="col-lg-7 px-5 text-start">
           <div class="h-100 d-inline-flex align-items-center me-4">
             <small class="fa fa-phone-alt me-2"></small>
-            <small>+012 345 6789</small>
+            <small>{{ $contact->phone }}</small>
           </div>
           <div class="h-100 d-inline-flex align-items-center me-4">
             <small class="far fa-envelope-open me-2"></small>
-            <small>info@example.com</small>
+            <small>{{ $contact->email }}</small>
           </div>
           <div class="h-100 d-inline-flex align-items-center me-4">
             <small class="far fa-clock me-2"></small>
-            <small>Mon - Fri : 09 AM - 09 PM</small>
+            <small>{{ $contact->open_day_at }} - {{ $contact->close_day_at }} : {{ $contact->open_at }} - {{ $contact->close_at }}</small>
           </div>
         </div>
         <div class="col-lg-5 px-5 text-end">
           <div class="h-100 d-inline-flex align-items-center">
-            <a class="text-white-50 ms-4" href=""><i class="fab fa-facebook-f"></i></a>
-            <a class="text-white-50 ms-4" href=""><i class="fab fa-twitter"></i></a>
-            <a class="text-white-50 ms-4" href=""><i class="fab fa-linkedin-in"></i></a>
-            <a class="text-white-50 ms-4" href=""><i class="fab fa-instagram"></i></a>
+            <a class="text-white-50 ms-4" href="{{ $contact->facebook }}"><i class="fab fa-facebook-f"></i></a>
+            <a class="text-white-50 ms-4" href="{{ $contact->twitter }}"><i class="fab fa-twitter"></i></a>
+            <a class="text-white-50 ms-4" href="{{ $contact->linkedin }}"><i class="fab fa-linkedin-in"></i></a>
+            <a class="text-white-50 ms-4" href="{{ $contact->instagram }}"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
       </div>
+      @endforeach
     </div>
     <!-- Topbar End -->
 
@@ -78,13 +80,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav mx-auto bg-light rounded pe-4 py-3 py-lg-0">
-          <a href="/" class="nav-item nav-link active">Home</a>
-          <a href="/promo" class="nav-item nav-link">Promo</a>
+          <a href="/" class="nav-item nav-link {{ (Request::is('/') ? 'active' : '') }}">Home</a>
+          <a href="/promo" class="nav-item nav-link {{ (Request::is('promo') ? 'active' : '') }}">Promo</a>
           <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Layanan</a>
+            <a href="#" class="nav-link dropdown-toggle {{ (Request::is('service/*') ? 'active' : '') }}" data-bs-toggle="dropdown">Layanan</a>
             <div class="dropdown-menu bg-light border-0 m-0">
-              <a href="/service1" class="dropdown-item">Pendirian Perusahaan</a>
-              <a href="/service5" class="dropdown-item">Digital Marketing</a>
+              @foreach ($categories as $category)
+              <a href="/service/{{ $category->id }}" class="dropdown-item">{{ $category->title }}</a>
+              @endforeach
+              {{-- <a href="/service5" class="dropdown-item">Digital Marketing</a>
               <a href="/service1" class="dropdown-item">Pembuatan dan Perubahan Dokumen Perusahaan</a>
               <a href="/service3" class="dropdown-item">Virtual Office</a>
               <a href="/service1" class="dropdown-item">Perizinan Usaha</a>
@@ -92,16 +96,12 @@
               <a href="/service4" class="dropdown-item">Izin Hukum</a>
               <a href="/service2" class="dropdown-item">Perizinan Khusus</a>
               <a href="/service1" class="dropdown-item">Perizinan Usaha</a>
-              <a href="/service2" class="dropdown-item">Layanan Lainnya</a>
-              <!-- <a href="appointment.html" class="dropdown-item">Appointment</a>
-              <a href="team.html" class="dropdown-item">Team Members</a>
-              <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-              <a href="404.html" class="dropdown-item">404 Page</a> -->
+              <a href="/service2" class="dropdown-item">Layanan Lainnya</a> --}}
             </div>
           </div>
-          <a href="/about" class="nav-item nav-link">Tentang Kami</a>
-          <a href="/faq" class="nav-item nav-link">FaQ</a>
-          <a href="/contact" class="nav-item nav-link">Hubungi Kami</a>
+          <a href="/about" class="nav-item nav-link {{ (Request::is('about') ? 'active' : '') }}">Tentang Kami</a>
+          <a href="/faq" class="nav-item nav-link {{ (Request::is('faq') ? 'active' : '') }}">FaQ</a>
+          <a href="/contact" class="nav-item nav-link {{ (Request::is('contact') ? 'active' : '') }}">Hubungi Kami</a>
         </div>
         <!-- <a href="" class="btn btn-primary px-3 d-none d-lg-block">Get A Quote</a> -->
       </div>
@@ -116,94 +116,16 @@
     <div class="container-xxl py-5">
         <div class="container">
           <div class="row g-5">
-            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-              <h1 class="display-6 mb-5">
-                If You Have Any Query, Please Contact Us
-              </h1>
-              <p class="mb-4">
-                Contact Us
-              </p>
-              <form>
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="name"
-                        placeholder="Your Name"
-                      />
-                      <label for="name">Nama</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        placeholder="Your Email"
-                      />
-                      <label for="email">No Telepon</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        placeholder="Your Email"
-                      />
-                      <label for="email">Email</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="subject"
-                        placeholder="Subject"
-                      />
-                      <label for="subject">Bidang Usaha</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-floating">
-                      <textarea
-                        class="form-control"
-                        placeholder="Leave a message here"
-                        id="message"
-                        style="height: 100px"
-                      ></textarea>
-                      <label for="message">Message</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <button class="btn btn-primary py-3 px-5" type="submit">
-                      Send Message
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
             <div
-              class="col-lg-6 wow fadeIn"
+              class="col-lg-12 wow fadeIn"
               data-wow-delay="0.5s"
               style="min-height: 450px"
             >
-              <div class="position-relative rounded overflow-hidden h-100">
-                <iframe
-                  class="position-relative w-100 h-100"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                  frameborder="0"
-                  style="min-height: 450px; border: 0"
-                  allowfullscreen=""
-                  aria-hidden="false"
-                  tabindex="0"
-                ></iframe>
-              </div>
+            @foreach ($contacts as $contact)
+            <div class="position-relative rounded overflow-hidden h-100">
+              {!! $contact->iframe !!}
+            </div>
+            @endforeach
             </div>
           </div>
         </div>
@@ -216,87 +138,13 @@
     <div class="container-fluid appointment my-5 py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
     <div class="row g-5">
-        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-        <div class="bg-white rounded p-5">
-            <form>
-            <div class="row g-3">
-                <div class="col-sm-6">
-                <div class="form-floating">
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="gname"
-                    placeholder="Gurdian Name"
-                    />
-                    <label for="gname">Name</label>
-                </div>
-                </div>
-                <div class="col-sm-6">
-                <div class="form-floating">
-                    <input
-                    type="email"
-                    class="form-control"
-                    id="gmail"
-                    placeholder="Gurdian Email"
-                    />
-                    <label for="gmail">No Telepon</label>
-                </div>
-                </div>
-                <div class="col-sm-6">
-                <div class="form-floating">
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="cname"
-                    placeholder="Child Name"
-                    />
-                    <label for="cname">Email</label>
-                </div>
-                </div>
-                <div class="col-sm-6">
-                <div class="form-floating">
-                    <input
-                    type="text"
-                    class="form-control"
-                    id="cage"
-                    placeholder="Child Age"
-                    />
-                    <label for="cage">Bidang Usaha</label>
-                </div>
-                </div>
-                <div class="col-12">
-                <div class="form-floating">
-                    <textarea
-                    class="form-control"
-                    placeholder="Leave a message here"
-                    id="message"
-                    style="height: 80px"
-                    ></textarea>
-                    <label for="message">Message</label>
-                </div>
-                </div>
-                <div class="col-12">
-                <button class="btn btn-primary py-3 px-5" type="submit">
-                    Kirim
-                </button>
-                </div>
-            </div>
-            </form>
-        </div>
-        </div>
-        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px">
+        @foreach ($contacts as $contact)
+        <div class="col-lg-12 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px">
         <div class="position-relative rounded overflow-hidden h-100">
-            <iframe
-            class="position-relative w-100 h-100"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-            frameborder="0"
-            style="min-height: 450px; border: 0"
-            allowfullscreen=""
-            aria-hidden="false"
-            tabindex="0"
-            ></iframe>
+          {!! $contact->iframe !!}
         </div>
         </div>
+        @endforeach
         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
         
         </div>
@@ -315,65 +163,53 @@ data-wow-delay="0.1s"
 >
 <div class="container py-5">
   <div class="row g-5">
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-4 col-md-6">
+      @foreach ($abouts as $about)
       <h1 class="text-white mb-4">
         <img
           class="img-fluid me-3"
           src="{{ asset('frontend/img/icon/icon-02-light.png') }}"
           alt=""
-        />Insure
+        />
       </h1>
       <p>
-        Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat
-        ipsum et lorem et sit, sed stet lorem sit clita
+        {!! $shortenedText = Str::limit ($about->desc, 100) !!}
       </p>
+      @endforeach
+      @foreach ($contacts as $contact)
       <div class="d-flex pt-2">
-        <a class="btn btn-square me-1" href=""
+        <a class="btn btn-square me-1" href="{{ $contact->twitter }}"
           ><i class="fab fa-twitter"></i
         ></a>
-        <a class="btn btn-square me-1" href=""
+        <a class="btn btn-square me-1" href="{{ $contact->facebook }}"
           ><i class="fab fa-facebook-f"></i
         ></a>
-        <a class="btn btn-square me-1" href=""
+        <a class="btn btn-square me-1" href="{{ $contact->youtube }}"
           ><i class="fab fa-youtube"></i
         ></a>
-        <a class="btn btn-square me-0" href=""
+        <a class="btn btn-square me-0" href="{{ $contact->linkedin }}"
           ><i class="fab fa-linkedin-in"></i
         ></a>
       </div>
+      @endforeach
     </div>
-    <div class="col-lg-3 col-md-6">
+    @foreach ($contacts as $contact)
+    <div class="col-lg-4 col-md-6">
       <h5 class="text-light mb-4">Address</h5>
       <p>
-        <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA
+        <i class="fa fa-map-marker-alt me-3"></i>{{ $contact->address }}
       </p>
-      <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-      <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+      <p><i class="fa fa-phone-alt me-3"></i>{{ $contact->phone }}</p>
+      <p><i class="fa fa-envelope me-3"></i>{{ $contact->email }}</p>
     </div>
-    <div class="col-lg-3 col-md-6">
+    @endforeach
+    <div class="col-lg-4 col-md-6">
       <h5 class="text-light mb-4">Quick Links</h5>
-      <a class="btn btn-link" href="">About Us</a>
-      <a class="btn btn-link" href="">Contact Us</a>
-      <a class="btn btn-link" href="">Our Services</a>
-      <a class="btn btn-link" href="">Terms & Condition</a>
-      <a class="btn btn-link" href="">Support</a>
-    </div>
-    <div class="col-lg-3 col-md-6">
-      <h5 class="text-light mb-4">Newsletter</h5>
-      <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-      <div class="position-relative mx-auto" style="max-width: 400px">
-        <input
-          class="form-control bg-transparent w-100 py-3 ps-4 pe-5"
-          type="text"
-          placeholder="Your email"
-        />
-        <button
-          type="button"
-          class="btn btn-secondary py-2 position-absolute top-0 end-0 mt-2 me-2"
-        >
-          SignUp
-        </button>
-      </div>
+      <a class="btn btn-link" href="/">Home</a>
+      <a class="btn btn-link" href="/promo">Promo</a>
+      <a class="btn btn-link" href="/about">Tentang Kami</a>
+      <a class="btn btn-link" href="/faq">FaQ</a>
+      <a class="btn btn-link" href="/contact">Contact Us</a>
     </div>
   </div>
 </div>
@@ -381,14 +217,9 @@ data-wow-delay="0.1s"
   <div class="container">
     <div class="row">
       <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-        &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+        &copy; <a href="#">Ijin</a>, All Right Reserved.
       </div>
-      <div class="col-md-6 text-center text-md-end">
-        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-        Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-        <br />Distributed By:
-        <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-      </div>
+      
     </div>
   </div>
 </div>

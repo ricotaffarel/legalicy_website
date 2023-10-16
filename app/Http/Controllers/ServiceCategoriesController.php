@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ServiceCategory;
+use App\Models\About;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ServiceCategoriesController extends Controller
@@ -18,13 +20,17 @@ class ServiceCategoriesController extends Controller
         }
 
         $service_category = $query->latest()->paginate(10);
-        return view('admin.service_categories.index', compact('service_category', 'search'));
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.service_categories.index', compact('service_category', 'search', 'abouts', 'contacts'));
     }
 
     //view create
     function create()
     {
-        return view('admin.service_categories.create');
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.service_categories.create', compact('abouts', 'contacts'));
     }
 
     //controller create
@@ -49,7 +55,9 @@ class ServiceCategoriesController extends Controller
     function edit($id)
     {
         $service_category = ServiceCategory::find($id);
-        return view('admin.service_categories.edit', compact('service_category'));
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.service_categories.edit', compact('service_category', 'abouts', 'contacts'));
     }
 
     //controller update

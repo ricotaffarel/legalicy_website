@@ -8,6 +8,7 @@
         <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
           <h1 class="display-6 mb-5 text-center">Why Choose Us?</h1>
           <div class="row g-3">
+            @foreach ($choisesUs as $choise)
             <div class="col-sm-12 wow fadeIn" data-wow-delay="0.1s">
               <div class="bg-light rounded h-100 p-3">
                 <div class="bg-white d-flex flex-column justify-content-center text-center rounded h-100 py-4 px-3">
@@ -15,71 +16,18 @@
                     <div class="col-sm-2">
                       <img
                         class="align-self-center mb-3"
-                        src="{{ asset('frontend/img/icon/icon-06-primary.png') }}"
-                        alt=""/>
+                        src="{{ asset('choisesUs/' . $choise->image) }}"
+                        alt="" style="max-width: 100px"/>
                     </div>
                     <div class="col-sm-10">
-                      <h5 class="text-md-start">Easy Process</h5>
-                      <p class="text-md-start">IZIN.co.id menyediakan hampir seluruh layanan legalitas yang dibutuhkan pelaku usaha maupun perusahaan, dari pendirian perusahaan, pengurusan perizinan sampai layanan pengurusan pajak.</p>
+                      <h5 class="text-md-start">{{ $choise->title }}</h5>
+                      <p class="text-md-start">{{ $choise->desc }}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 wow fadeIn" data-wow-delay="0.1s">
-              <div class="bg-light rounded h-100 p-3">
-                <div class="bg-white d-flex flex-column justify-content-center text-center rounded h-100 py-4 px-3">
-                  <div class="row g-3">
-                    <div class="col-sm-2">
-                      <img
-                        class="align-self-center mb-3"
-                        src="{{ asset('frontend/img/icon/icon-03-primary.png') }}"
-                        alt=""/>
-                    </div>
-                    <div class="col-sm-10">
-                      <h5 class="text-md-start">Easy Process</h5>
-                      <p class="text-md-start">IZIN.co.id menyediakan hampir seluruh layanan legalitas yang dibutuhkan pelaku usaha maupun perusahaan, dari pendirian perusahaan, pengurusan perizinan sampai layanan pengurusan pajak.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 wow fadeIn" data-wow-delay="0.1s">
-              <div class="bg-light rounded h-100 p-3">
-                <div class="bg-white d-flex flex-column justify-content-center text-center rounded h-100 py-4 px-3">
-                  <div class="row g-3">
-                    <div class="col-sm-2">
-                      <img
-                        class="align-self-center mb-3"
-                        src="{{ asset('frontend/img/icon/icon-02-primary.png') }}"
-                        alt=""/>
-                    </div>
-                    <div class="col-sm-10">
-                      <h5 class="text-md-start">Easy Process</h5>
-                      <p class="text-md-start">IZIN.co.id menyediakan hampir seluruh layanan legalitas yang dibutuhkan pelaku usaha maupun perusahaan, dari pendirian perusahaan, pengurusan perizinan sampai layanan pengurusan pajak.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 wow fadeIn" data-wow-delay="0.1s">
-              <div class="bg-light rounded h-100 p-3">
-                <div class="bg-white d-flex flex-column justify-content-center text-center rounded h-100 py-4 px-3">
-                  <div class="row g-3">
-                    <div class="col-sm-2">
-                      <img
-                        class="align-self-center mb-3"
-                        src="{{ asset('frontend/img/icon/icon-01-primary.png') }}"
-                        alt=""/>
-                    </div>
-                    <div class="col-sm-10">
-                      <h5 class="text-md-start">Easy Process</h5>
-                      <p class="text-md-start">IZIN.co.id menyediakan hampir seluruh layanan legalitas yang dibutuhkan pelaku usaha maupun perusahaan, dari pendirian perusahaan, pengurusan perizinan sampai layanan pengurusan pajak.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </div>
@@ -89,6 +37,7 @@
   <!-- About Start -->
   <div class="container-xxl py-5">
     <div class="container">
+      @foreach ($abouts as $about)
       <div class="row g-5">
         <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
           <div
@@ -97,13 +46,13 @@
           >
             <img
               class="position-absolute w-100 h-100"
-              src="{{ asset('frontend/img/about.jpg') }}"
+              src="{{ asset('abouts/' . $about->image) }}"
               alt=""
               style="object-fit: cover"
             />
             <div class="position-absolute top-0 start-0 bg-white rounded pe-3 pb-3" style="width: 200px; height: 200px">
               <div class="d-flex flex-column justify-content-center text-center bg-primary rounded h-100 p-3">
-                <h1 class="text-white mb-0">25</h1>
+                <h1 class="text-white mb-0">{{ $about->experience }}</h1>
                 <h2 class="text-white">Tahun</h2>
                 <h5 class="text-white mb-0">Pengalaman</h5>
               </div>
@@ -113,27 +62,25 @@
         <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
           <div class="h-100">
             <h1 class="display-6 mb-5">
-              Tentang Kami
+              {{ $about->title }}
             </h1>
-            <p class="fs-5 text-primary mb-4">
+            {{-- <p class="fs-5 text-primary mb-4">
               Aliqu diam amet diam et eos. Clita erat ipsum et lorem sed stet
               lorem sit clita duo justo erat amet
-            </p>
+            </p> --}}
             <p class="mb-4">
-              Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-              Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-              sed stet lorem sit clita duo justo magna dolore erat amet
+              {!! $about->desc !!}
             </p>
             <div class="row g-4 mb-4">
               <div class="col-lg-12 facts-counter wow fadeIn" data-wow-delay="0.5s">
                 <div class="h-100 px-4 pe-lg-0">
                   <div class="row g-5">
                     <div class="col-sm-6">
-                      <h1 class="display-5" data-toggle="counter-up">1234</h1>
+                      <h1 class="display-5" data-toggle="counter-up">{{ $about->client }}</h1>
                       <p class="fs-5 text-primary">Klien</p>
                     </div>
                     <div class="col-sm-6">
-                      <h1 class="display-5" data-toggle="counter-up">1234</h1>
+                      <h1 class="display-5" data-toggle="counter-up">{{ $about->project }}</h1>
                       <p class="fs-5 text-primary">Projek</p>
                     </div>
                   </div>
@@ -154,6 +101,7 @@
           </div>
         </div>
       </div>
+      @endforeach
     </div>
   </div>
   <!-- About End -->

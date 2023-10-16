@@ -7,6 +7,11 @@ use App\Http\Controllers\ServiceCategoriesController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ChoiseUsController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +32,8 @@ Route::group(['middleware' => 'guest'], function () {
         return view('admin.login');
     });
     Route::post('/login', [AuthController::class, 'login'])->name('dologin');
+    
+    
 });
 Route::get('/redirect', [AuthController::class, 'redirect']);
 
@@ -54,4 +61,12 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('discount', DiscountController::class)->names('admin.discount');
     Route::resource('choiseus', ChoiseUsController::class)->names('admin.choiseus');
     Route::resource('slider', SliderController::class)->names('admin.slider');
+    Route::resource('discount', DiscountController::class)->names('admin.discount');
+    Route::resource('testimonial', TestimonialController::class)->names('admin.testimonial');
+    Route::resource('about', AboutController::class)->names('admin.about');
+    Route::resource('contact', ContactController::class)->names('admin.contact');
+    Route::resource('faq', FaqController::class)->names('admin.faq');
 });
+
+Route::get('/service/{id}', [WelcomeController::class, 'service']);
+Route::get('/service-detail/{id}', [WelcomeController::class, 'serviceDetail']);

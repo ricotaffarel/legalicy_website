@@ -5,12 +5,12 @@
             <div class="col-md-12 grid-margin">
                 <div class="row">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">Data Discount</h3>
+                        <h3 class="font-weight-bold">Data Testimonial</h3>
                         <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
                                 class="text-primary">3 unread alerts!</span></h6>
                     </div>
                     <div class="col-12 col-xl-4">
-                        <form action={{ route('admin.discount.index') }} method="GET">
+                        <form action={{ route('admin.testimonial.index') }} method="GET">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search">
                                 <div class="input-group-append">
@@ -27,10 +27,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Discounts Table</h4>
+                            <h4 class="card-title">Testimonial Table</h4>
                         </div>
                         <div class="col-4">
-                            <a class="btn btn-primary float-right" href={{ route('admin.discount.create') }}>Add
+                            <a class="btn btn-primary float-right" href={{ route('admin.testimonial.create') }}>Add
                                 Data</a>
                         </div>
                     </div>
@@ -47,22 +47,24 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Image</th>
-                                    <th>Start At</th>
-                                    <th>End At</th>
+                                    <th>Name</th>
+                                    <th>Job</th>
+                                    <th>Testimony</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($discounts as $item)
+                                @forelse ($testimonials as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td> <img src="{{ asset('discounts/' . $item->image) }}" alt=""
+                                        <td> <img src="{{ asset('testimonials/' . $item->image) }}" alt=""
                                                 class="img-fluid"
-                                                style="width: 75px; height: 100px; border-radius:0;"></td>
-                                        <td>{{ $item->start_at }}</td>
-                                        <td>{{ $item->end_at }}</td>
+                                                style="max-width: 200px; max-height: 100px; border-radius:0;"></td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->job }}</td>
+                                        <td>{{ $item->testimony }}</td>
                                         <td><a class="btn btn-warning" style="margin-right: 10px"
-                                                href={{ route('admin.discount.edit', $item->id) }}>Edit</a>
+                                                href={{ route('admin.testimonial.edit', $item->id) }}>Edit</a>
                                             <a class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#modaldelete">Hapus</a>
 
@@ -77,7 +79,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Close</button>
-                                                            <form action={{ route('admin.discount.destroy', $item->id) }}
+                                                            <form action={{ route('admin.testimonial.destroy', $item->id) }}
                                                                 method="post">
                                                                 @csrf
                                                                 @method('delete')
@@ -98,7 +100,7 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-center" id="pagination">
-                            {{ $discounts->links() }}
+                            {{ $testimonials->links() }}
                         </div>
                     </div>
                 </div>

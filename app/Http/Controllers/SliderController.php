@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Slider;
+use App\Models\About;
+use App\Models\Contact;
 use Illuminate\Pagination\Paginator;
 
 class SliderController extends Controller
@@ -20,13 +22,17 @@ class SliderController extends Controller
         }
 
         $sliders = $query->latest()->paginate(10);
-        return view('admin.slider.index', compact('sliders'));
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.slider.index', compact('sliders', 'abouts', 'contacts'));
     }
 
     //view create
     function create()
     {
-        return view('admin.slider.create');
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.slider.create', compact('abouts', 'contacts'));
     }
 
     //controller create
@@ -60,7 +66,9 @@ class SliderController extends Controller
     function edit(string $id)
     {
         $sliders = Slider::find($id);
-        return view('admin.slider.edit', compact('sliders'));
+        $abouts = About::all();
+        $contacts = Contact::all();
+        return view('admin.slider.edit', compact('sliders', 'abouts', 'contacts'));
     }
 
     //controller update
