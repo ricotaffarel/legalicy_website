@@ -9,6 +9,7 @@ use App\Models\Slider;
 use App\Models\Discount;
 use App\Models\About;
 use App\Models\Contact;
+use App\Models\Config;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -22,6 +23,7 @@ class DashboardController extends Controller
         $discounts = Discount::count();
         $abouts = About::all();
         $contacts = Contact::all();
+        $configs = Config::all();
 
         $data = [
             "slider" => $slider,
@@ -31,6 +33,7 @@ class DashboardController extends Controller
             "discounts" => $discounts,
             "abouts" => $abouts,
             "contacts" => $contacts,
+            "configs" => $configs,
         ];
 
         return view('admin.dashboard', $data);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\Contact;
 use App\Models\Faq;
+use App\Models\Config;
 
 class FaqController extends Controller
 {
@@ -26,7 +27,8 @@ class FaqController extends Controller
         $faqs = $query->latest()->paginate(10);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.faq.index', compact('faqs', 'search', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.faq.index', compact('faqs', 'search', 'abouts', 'contacts', 'configs'));
     }
 
     /**
@@ -36,7 +38,8 @@ class FaqController extends Controller
     {
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.faq.create', compact('abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.faq.create', compact('abouts', 'contacts', 'configs'));
     }
 
     /**
@@ -77,7 +80,8 @@ class FaqController extends Controller
         $abouts = About::all();
         $contacts = Contact::all();
         $faq = Faq::find($id);
-        return view('admin.faq.edit', compact('abouts', 'contacts', 'faq'));
+        $configs = Config::all();
+        return view('admin.faq.edit', compact('abouts', 'contacts', 'faq', 'configs'));
     }
 
     /**

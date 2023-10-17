@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\About;
 use App\Models\Contact;
+use App\Models\Config;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -25,7 +26,8 @@ class ServiceController extends Controller
         $service = $query->latest()->paginate(10);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.service.index', compact('service', 'search', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.service.index', compact('service', 'search', 'abouts', 'contacts', 'configs'));
     }
 
     //view create
@@ -34,7 +36,8 @@ class ServiceController extends Controller
         $service_category = ServiceCategory::all();
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.service.create', compact('service_category', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.service.create', compact('service_category', 'abouts', 'contacts', 'configs'));
     }
 
     //controller create
@@ -43,11 +46,13 @@ class ServiceController extends Controller
         $validate = $request->validate([
             'title' => 'required|max:100',
             'desc' => 'required',
+            'price' => 'required',
             'category_id' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
             'title.required' => 'Title is required',
             'desc.required' => 'Desc is required',
+            'price.required' => 'Price is required',
             'title.max' => 'Title maxsimum :max 100 caracter.',
             'image.required' => 'Image is not null',
             'category_id.required' => 'category_id is not null'
@@ -71,7 +76,8 @@ class ServiceController extends Controller
         $service_category = ServiceCategory::all();
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.service.edit', compact('service', 'service_category', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.service.edit', compact('service', 'service_category', 'abouts', 'contacts', 'configs'));
     }
 
     //controller update
@@ -81,10 +87,12 @@ class ServiceController extends Controller
             'title' => 'required|max:100',
             'desc' => 'required',
             'category_id' => 'required',
+            'price' => 'required',
             'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
             'title.required' => 'Title is required',
             'desc.required' => 'Desc is required',
+            'price.required' => 'Price is required',
             'title.max' => 'Title maxsimum :max 100 caracter.',
             'category_id.required' => 'category_id is not null'
         ]);

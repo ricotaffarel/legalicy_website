@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\About;
 use App\Models\Contact;
+use App\Models\Config;
 use Illuminate\Pagination\Paginator;
 
 class SliderController extends Controller
@@ -24,7 +25,8 @@ class SliderController extends Controller
         $sliders = $query->latest()->paginate(10);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.slider.index', compact('sliders', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.slider.index', compact('sliders', 'abouts', 'contacts', 'configs'));
     }
 
     //view create
@@ -32,7 +34,8 @@ class SliderController extends Controller
     {
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.slider.create', compact('abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.slider.create', compact('abouts', 'contacts', 'configs'));
     }
 
     //controller create
@@ -68,7 +71,8 @@ class SliderController extends Controller
         $sliders = Slider::find($id);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.slider.edit', compact('sliders', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.slider.edit', compact('sliders', 'abouts', 'contacts', 'configs'));
     }
 
     //controller update

@@ -7,6 +7,7 @@ use App\Models\Discount;
 use App\Models\Service;
 use App\Models\About;
 use App\Models\Contact;
+use App\Models\Config;
 
 class DiscountController extends Controller
 {
@@ -25,7 +26,8 @@ class DiscountController extends Controller
         $discounts = $query->latest()->paginate(10);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.discount.index', compact('discounts', 'search', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.discount.index', compact('discounts', 'search', 'abouts', 'contacts', 'configs'));
     }
 
     //view create
@@ -34,7 +36,8 @@ class DiscountController extends Controller
         $service_category = Service::all();
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.discount.create', compact('service_category', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.discount.create', compact('service_category', 'abouts', 'contacts', 'configs'));
     }
 
     //controller create
@@ -70,7 +73,8 @@ class DiscountController extends Controller
         $service_category = Service::all();
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.discount.edit', compact('discount', 'service_category', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.discount.edit', compact('discount', 'service_category', 'abouts', 'contacts', 'configs'));
     }
 
     //controller update

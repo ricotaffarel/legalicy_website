@@ -1,5 +1,11 @@
 @extends('guess.layout.app')
 
+@section('title')
+  @foreach ($configs as $config)
+    <title>{{ $config->contact }}</title>
+  @endforeach
+@endsection
+
 @section('content')
     
     <!-- Page Header Start -->
@@ -27,7 +33,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-4 mb-3">
                 <div class="card border-0 shadow-lg card-fluid">
-                    <a href="https://api.whatsapp.com/send?phone=6287877530812&text=Hello" style="transition: .3s; color: #393939;">
+                    <a href="https://api.whatsapp.com/send?phone={{ $contact->phone }}&text=Hello" style="transition: .3s; color: #393939;">
                         <div class="card-body">
                             <div class="media align-items-center">
                               <div class="row g-3">

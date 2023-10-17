@@ -23,8 +23,18 @@
                                 <label for="desc" class="col-sm-3 col-form-label">Desc</label>
                                 <div class="col-sm-9">
                                     <textarea type="text" class="form-control @error('desc') is-invalid @enderror" value="{{ old('desc') }}"
-                                        id="desc" name="desc" placeholder="Add Desc"></textarea>
+                                        id="task-textarea" name="desc" placeholder="Add Desc"></textarea>
                                     @error('desc')
+                                        <div class="invalid invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="price" class="col-sm-3 col-form-label">Price</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control @error('price') is-invalid @enderror"
+                                        value="{{ old('price') }}" id="price" name="price" placeholder="Add Price">
+                                    @error('price')
                                         <div class="invalid invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

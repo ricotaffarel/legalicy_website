@@ -17,6 +17,7 @@ return new class extends Migration
             $table->char('title', 100);
             $table->char('desc');
             $table->string('image');
+            $table->string('price');
             $table->foreign('category_id')
                 ->references('id')
                 ->on('service_categories')

@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Contact::create([
             'address' => 'Graha Nurul Menteng',
-            'phone' => '0896-8780-8089',
+            'phone' => '089687808089',
             'email' => 'email@gmail.com',
             'open_day_at' => 'Senin',
             'close_day_at' => 'Jumat',
@@ -47,6 +47,19 @@ class DatabaseSeeder extends Seeder
             'youtube' => '#',
             'facebook' => '#',
             'linkedin' => '#',
+        ]);
+
+        \App\Models\Config::create([
+            'title' => 'AyoIjin',
+            'promo' => 'Promo | AyoIjin',
+            'service' => 'Layanan | AyoIjin',
+            'service_detail' => 'Detail Layanan | AyoIjin',
+            'about' => 'Tentang Kami | AyoIjin',
+            'faq' => 'FaQ | AyoIjin',
+            'contact' => 'Contact | AyoIjin',
+            'favicon' => 'icon-02-primary.png',
+            'keyword' => 'ayoijin, perusahaanperijinan',
+            'desc' => 'Perusahaan perijinan AyoIjin',
         ]);
     }
 }

@@ -62,7 +62,8 @@
                                                 style="max-width: 200px; max-height: 100px; border-radius:0;"></td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->category }}</td>
-                                        <td>{{ $item->desc }}</td>
+                                        <td>Rp {{ number_format($item->price) }},-</td>
+                                        <td>{!! $item->desc !!}</td>
                                         <td><a class="btn btn-warning" style="margin-right: 10px"
                                                 href={{ route('admin.service.edit', $item->id) }}>Edit</a>
                                             <a class="btn btn-danger" data-bs-toggle="modal"

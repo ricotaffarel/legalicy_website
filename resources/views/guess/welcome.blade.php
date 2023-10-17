@@ -1,4 +1,11 @@
 @extends('guess.layout.app')
+
+@section('title')
+  @foreach ($configs as $config)
+    <title>{{ $config->title }}</title>
+  @endforeach
+@endsection
+
 @section('content')
 
     <!-- Carousel Start -->
@@ -82,7 +89,7 @@
     <!-- Features End -->
 
   <!-- About Start -->
-  <div class="container-xxl py-5">
+  <div class="container-xxl py-5" id="abouts">
     <div class="container">
       @foreach ($abouts as $about)
       <div class="row g-5">
@@ -134,17 +141,6 @@
                 </div>
               </div>
             </div>
-            
-            <!-- <div class="border-top mt-4 pt-4">
-              <div class="d-flex align-items-center">
-                <img
-                  class="flex-shrink-0 rounded-circle me-3"
-                  src="img/profile.jpg"
-                  alt=""
-                />
-                <h5 class="mb-0">Call Us: +012 345 6789</h5>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -294,6 +290,8 @@
           </h1>
         </div>
         <div class="row g-4 justify-content-center">
+
+          @foreach ($categories as $category)
           <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="service-item rounded h-100 p-5">
               <div class="d-flex align-items-center ms-n5 mb-4">
@@ -302,155 +300,19 @@
                 >
                   <img
                     class="img-fluid"
-                    src="{{ asset('frontend/img/icon/icon-10-light.png') }}"
+                    src="{{ asset('frontend/img/icon/icon-04-light.png') }}"
                     alt=""
                   />
                 </div>
-                <h4 class="mb-0">Pendirian Perusahaan</h4>
+                <h4 class="mb-0">{{ $category->title }}</h4>
               </div>
               <p class="mb-4">
-                PT, CV, FIRMA, PMA, Yayasan, Koperasi, Persekutuan Perdata, Pendirian Perkumpulan
+                {{-- PT, CV, FIRMA, PMA, Yayasan, Koperasi, Persekutuan Perdata, Pendirian Perkumpulan --}}
               </p>
-              <a class="btn btn-light px-3" href="/service1">Read More</a>
+              <a class="btn btn-light px-3" href="/service/{{ $category->id }}">Read More</a>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div
-                  class="service-icon flex-shrink-0 bg-primary rounded-end me-4"
-                >
-                  <img
-                    class="img-fluid"
-                    src="{{ asset('frontend/img/icon/icon-01-light.png') }}"
-                    alt=""
-                  />
-                </div>
-                <h4 class="mb-0">Virtual Office</h4>
-              </div>
-              <p class="mb-4">
-                Aliqu diam amet eos erat ipsum et lorem et sit, sed stet lorem
-                sit clita duo justo erat amet
-              </p>
-              <a class="btn btn-light px-3" href="/service3">Read More</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div
-                  class="service-icon flex-shrink-0 bg-primary rounded-end me-4"
-                >
-                  <img
-                    class="img-fluid"
-                    src="{{ asset('frontend/img/icon/icon-05-light.png') }}"
-                    alt=""
-                  />
-                </div>
-                <h4 class="mb-0">Pembuatan dan Perubahan</h4>
-              </div>
-              <p class="mb-4">
-                Perubahan Anggaran Dasar, Perubahan Data Perseroan, Perubahan Data Perusahaan Asing, Perubahan Cabang Perusahaan
-              </p>
-              <a class="btn btn-light px-3" href="/service1">Read More</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div
-                  class="service-icon flex-shrink-0 bg-primary rounded-end me-4"
-                >
-                  <img
-                    class="img-fluid"
-                    src="{{ asset('frontend/img/icon/icon-08-light.png') }}"
-                    alt=""
-                  />
-                </div>
-                <h4 class="mb-0">Digital Marketing</h4>
-              </div>
-              <p class="mb-4">
-                SOcial Media Management, Website Development, SEO, Digital Campaign
-              </p>
-              <a class="btn btn-light px-3" href="/service5">Read More</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div
-                  class="service-icon flex-shrink-0 bg-primary rounded-end me-4"
-                >
-                  <img
-                    class="img-fluid"
-                    src="{{ asset('frontend/img/icon/icon-07-light.png') }}"
-                    alt=""
-                  />
-                </div>
-                <h4 class="mb-0">Perizinan Usaha</h4>
-              </div>
-              <p class="mb-4">
-                OSS, NPNW, IUMK, NIB Ekspor dan Impor
-              </p>
-              <a class="btn btn-light px-3" href="/service1">Read More</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
-                  <img class="img-fluid" src="{{ asset('frontend/img/icon/icon-06-light.png') }}" alt=""/>
-                </div>
-                <h4 class="mb-0">Izin HAKI</h4>
-              </div>
-              <p class="mb-4">
-                Pendaftaran Merek, Perpanjangan Merek, Pendaftaran Hak Paten
-              </p>
-              <a class="btn btn-light px-3" href="/service1">Read More</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
-                  <img class="img-fluid" src="{{ asset('frontend/img/icon/icon-06-light.png') }}" alt=""/>
-                </div>
-                <h4 class="mb-0">Izin Hukum</h4>
-              </div>
-              <p class="mb-4">
-                Pembuatan Perjanjian, Konsultasi hukum, SUrat somasi, legal opiniion, mediasi, pendampingan di kepolisian, hukum keluarga, hukum ketenagakerjaan
-              </p>
-              <a class="btn btn-light px-3" href="/service4">Read More</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
-                  <img class="img-fluid" src="{{ asset('frontend/img/icon/icon-06-light.png') }}" alt=""/>
-                </div>
-                <h4 class="mb-0">PErizinan Khusus</h4>
-              </div>
-              <p class="mb-4">
-                PIRT, IUJK
-              </p>
-              <a class="btn btn-light px-3" href="/service2">Read More</a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="service-item rounded h-100 p-5">
-              <div class="d-flex align-items-center ms-n5 mb-4">
-                <div class="service-icon flex-shrink-0 bg-primary rounded-end me-4">
-                  <img class="img-fluid" src="{{ asset('frontend/img/icon/icon-06-light.png') }}" alt=""/>
-                </div>
-                <h4 class="mb-0">Layanan Lainnya</h4>
-              </div>
-              <p class="mb-4">
-                ISO, 9001, ISO 14001, ISO 45001, ISO 22001, ISO 27001
-              </p>
-              <a class="btn btn-light px-3" href="/service2">Read More</a>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>

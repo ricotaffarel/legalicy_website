@@ -12,73 +12,84 @@ use App\Models\Faq;
 use App\Models\Discount;
 use App\Models\Service;
 use App\Models\ServiceCategory;
+use App\Models\Config;
+use Carbon\Carbon;
 
 class WelcomeController extends Controller
 {
     public function index()
     {
+        $configs = Config::all();
         $sliders = Slider::all();
         $choisesUs = ChoiseUs::all();
         $abouts = About::all();
         $testimonials = Testimonial::all();
         $contacts = Contact::all();
         $categories = ServiceCategory::all();
-        return view('guess.welcome', compact('categories', 'sliders', 'choisesUs', 'testimonials', 'abouts', 'contacts'));
+        $services = Service::latest()->paginate(9);
+        return view('guess.welcome', compact('categories', 'services', 'sliders', 'choisesUs', 'testimonials', 'abouts', 'contacts', 'configs'));
     }
 
     public function about()
     {
+        $configs = Config::all();
         $choisesUs = ChoiseUs::all();
         $abouts = About::all();
         $contacts = Contact::all();
         $categories = ServiceCategory::all();
-        return view('guess.about', compact('choisesUs', 'abouts', 'contacts', 'categories'));
+        return view('guess.about', compact('choisesUs', 'abouts', 'contacts', 'categories', 'configs'));
     }
 
     public function promo()
     {
+        $configs = Config::all();
+        $today = Carbon::now();
         $contacts = Contact::all();
         $abouts = About::all();
-        $discounts = Discount::all();
+        $discounts = Discount::latest()->where('end_at', '>=', $today)->get();
         $categories = ServiceCategory::all();
-        return view('guess.promo', compact('contacts', 'discounts', 'categories', 'about'));
+        return view('guess.promo', compact('contacts', 'discounts', 'categories', 'abouts', 'configs'));
     }
 
     public function faq()
     {
+        $configs = Config::all();
         $contacts = Contact::all();
         $faqs = Faq::all();
         $abouts = About::all();
         $categories = ServiceCategory::all();
-        return view('guess.faq', compact('contacts', 'faqs', 'categories', 'abouts'));
+        return view('guess.faq', compact('contacts', 'faqs', 'categories', 'abouts', 'configs'));
     }
 
     public function contact()
     {
+        $configs = Config::all();
         $contacts = Contact::all();
         $abouts = About::all();
         $categories = ServiceCategory::all();
-        return view('guess.contact', compact('contacts', 'categories', 'abouts'));
+        return view('guess.contact', compact('contacts', 'categories', 'abouts', 'configs'));
     }
 
     public function service(string $id)
     {
+        $configs = Config::all();
         $category_id = $id;
         $services = Service::where('category_id', $category_id)->get();
         $categories = ServiceCategory::all();
         $category = ServiceCategory::find($id);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('guess.service', compact('categories', 'category', 'abouts', 'contacts', 'services'));
+        return view('guess.service', compact('categories', 'category', 'abouts', 'contacts', 'services', 'configs'));
     }
 
     public function serviceDetail(string $id)
     {
+        $configs = Config::all();
         $services = Service::find($id);
         $categories = ServiceCategory::all();
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('guess.service-detail', compact('categories', 'abouts', 'contacts', 'services'));
+        return view('guess.service-detail', compact('categories', 'abouts', 'contacts', 'services', 'configs'));
     }
 
     // public function service1()

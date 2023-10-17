@@ -1,5 +1,11 @@
 @extends('guess.layout.app')
 
+@section('title')
+  @foreach ($configs as $config)
+    <title>{{ $config->service }}</title>
+  @endforeach
+@endsection
+
 @section('content')
 
 {{-- Untuk Layanan
@@ -55,14 +61,14 @@
                       <h4 class="mb-0">{{ $service->title }}</h4>
                     </div>
                     <p class="mb-4">
-                        {{ $shortenedText = Str::limit ($service->desc, 50) }}
+                        {!! $shortenedText = Str::limit ($service->desc, 50) !!}
                     </p>
                     
                     <div class="row g-3">
                       <p>
                         Mulai Dari
                         <br>
-                        <b class="text-primary">IDR 3.900.000</b>
+                        <b class="text-primary">IDR {{ number_format($service->price) }},-</b>
                       </p>
                     </div>
 

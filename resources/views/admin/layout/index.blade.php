@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>AyoIzin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href={{ asset('backend/vendors/feather/feather.css') }}>
     <link rel="stylesheet" href={{ asset('backend/vendors/ti-icons/css/themify-icons.css') }}>
@@ -24,8 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <link rel="shortcut
-        icon" href={{ asset('backend/images/favicon.png') }} />
+    <link rel="shortcut icon" href={{ asset('backend/images/favicon.png') }} />
 </head>
 
 <body>
@@ -33,10 +32,12 @@
         {{-- navbar --}}
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="index.html"><img
-                        src={{ asset('backend/images/logo.svg') }} class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img
-                        src={{ asset('backend/images/logo-mini.svg') }} alt="logo" /></a>
+                @foreach ($configs as $config)
+                <a class="navbar-brand brand-logo mr-5" href=""><img
+                        src={{ asset('favicon/' . $config->favicon) }} class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href=""><img
+                        src={{ asset('favicon/' . $config->favicon) }} alt="logo" /></a>
+                @endforeach
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -55,10 +56,15 @@
                             </a>
                             <a class="dropdown-item">
                                 <i class="ti-power-off text-primary"></i>
-                                Logout
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-primary">Logout</button>
+                                </form>
+                                {{-- Logout --}}
                             </a>
                         </div>
                     </li>
+
                 </ul>
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
                     data-toggle="offcanvas">
@@ -91,6 +97,14 @@
                         <a class="nav-link" href="{{ Route('admin.contact.edit', $contact->id) }}">
                             <i class="icon-paper menu-icon"></i>
                             <span class="menu-title">Contact</span>
+                        </a>
+                    </li>
+                    @endforeach
+                    @foreach ($configs as $contact)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ Route('admin.config.edit', $contact->id) }}">
+                            <i class="icon-paper menu-icon"></i>
+                            <span class="menu-title">Config</span>
                         </a>
                     </li>
                     @endforeach

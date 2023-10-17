@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\Contact;
+use App\Models\Config;
 
 class AboutController extends Controller
 {
@@ -47,8 +48,9 @@ class AboutController extends Controller
     {
         $about = About::find($id);
         $abouts = About::all();
+        $configs = Config::all();
         $contacts = Contact::all();
-        return view('admin.about.edit', compact('about', 'abouts', 'contacts'));
+        return view('admin.about.edit', compact('about', 'abouts', 'contacts', 'configs'));
     }
 
     /**

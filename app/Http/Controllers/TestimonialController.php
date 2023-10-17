@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Testimonial;
 use App\Models\About;
 use App\Models\Contact;
+use App\Models\Config;
 
 class TestimonialController extends Controller
 {
@@ -27,7 +28,8 @@ class TestimonialController extends Controller
         $testimonials = $query->latest()->paginate(10);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.testimonial.index', compact('testimonials', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.testimonial.index', compact('testimonials', 'abouts', 'contacts', 'configs'));
     }
 
     /**
@@ -37,7 +39,8 @@ class TestimonialController extends Controller
     {
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.testimonial.create', compact('abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.testimonial.create', compact('abouts', 'contacts', 'configs'));
     }
 
     /**
@@ -83,7 +86,8 @@ class TestimonialController extends Controller
         $testimonials = Testimonial::find($id);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.testimonial.edit', compact('testimonials', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.testimonial.edit', compact('testimonials', 'abouts', 'contacts', 'configs'));
     }
 
     /**

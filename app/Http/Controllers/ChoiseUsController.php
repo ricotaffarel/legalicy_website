@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ChoiseUs;
 use App\Models\About;
 use App\Models\Contact;
+use App\Models\Config;
 
 class ChoiseUsController extends Controller
 {
@@ -23,7 +24,8 @@ class ChoiseUsController extends Controller
         $choises = $query->latest()->paginate(10);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.choiseUs.index', compact('choises', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.choiseUs.index', compact('choises', 'abouts', 'contacts', 'configs'));
     }
 
     //view create
@@ -31,7 +33,8 @@ class ChoiseUsController extends Controller
     {
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.choiseUs.create', compact('abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.choiseUs.create', compact('abouts', 'contacts', 'configs'));
     }
 
     //controller create
@@ -70,7 +73,8 @@ class ChoiseUsController extends Controller
         $choises = ChoiseUs::find($id);
         $abouts = About::all();
         $contacts = Contact::all();
-        return view('admin.choiseUs.edit', compact('choises', 'abouts', 'contacts'));
+        $configs = Config::all();
+        return view('admin.choiseUs.edit', compact('choises', 'abouts', 'contacts', 'configs'));
     }
 
     //controller update

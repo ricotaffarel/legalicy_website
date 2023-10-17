@@ -2,13 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Insure - Insurance HTML Template</title>
+    @yield('title')
+    @foreach ($configs as $config)
+    {{-- <title>{{ $config->title }}</title> --}}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="keywords" />
-    <meta content="" name="description" />
+    <meta content="{{ $config->keyword }}" name="keywords" />
+    <meta content="{{ $config->desc }}" name="description" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
+    <link href="{{ asset('favicon/' . $config->favicon) }}" rel="icon" />
+    <link href="{{ asset('favicon/' . $config->favicon) }}" rel="apple-touch-icon" />
+    @endforeach
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,7 +76,9 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5">
       <a href="index.html" class="navbar-brand d-flex align-items-center">
         <h1 class="m-0">
-          <img class="img-fluid me-3" src="{{ asset('frontend/img/icon/icon-02-primary.png') }}" alt=""/>
+          @foreach ($configs as $config)
+          <img class="img-fluid me-3" src="{{ asset('favicon/' . $config->favicon) }}" alt=""/>
+          @endforeach
         </h1>
       </a>
       <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -116,8 +122,124 @@
     <div class="container-xxl py-5">
         <div class="container">
           <div class="row g-5">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px">
+                <div class="card border-0 shadow-lg card-fluid">
+                    {{-- <a href="https://api.whatsapp.com/send?phone={{ $contact->phone }}&text=Hello" style="transition: .3s; color: #393939;"> --}}
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                              <div class="row g-3">
+                                <div class="col-3">
+                                  <div class="media-left">
+                                      {{-- <div class="btn text-light" style="background:#25D366;">
+                                          <i class="fab fa-map fa-3x"></i>
+                                      </div> --}}
+                                      <div class="btn btn-primary text-light w-100 h-100" style="font-size: 2em;">
+                                        <i class="bi bi-geo-alt bi-3x"></i>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-9">
+                                  <div class="ml-3 media-right">
+                                      <h5 class="mb-2 font-weight-light" style="color: #333;">Address</h5>
+                                      <span class="font-weight-bold">
+                                          {{ $contact->address }}
+                                      </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card border-0 shadow-lg card-fluid mt-4">
+                    {{-- <a href="https://api.whatsapp.com/send?phone={{ $contact->phone }}&text=Hello" style="transition: .3s; color: #393939;"> --}}
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                              <div class="row g-3">
+                                <div class="col-3">
+                                  <div class="media-left">
+                                      {{-- <div class="btn text-light" style="background:#25D366;">
+                                          <i class="fab fa-map fa-3x"></i>
+                                      </div> --}}
+                                      <div class="btn btn-primary text-light w-100 h-100" style="font-size: 2em;">
+                                        <i class="bi bi-calendar-check"></i>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-9">
+                                  <div class="ml-3 media-right">
+                                      <h5 class="mb-2 font-weight-light" style="color: #333;">Open Day</h5>
+                                      <span class="font-weight-bold">
+                                          {{ $contact->open_day_at }} - {{ $contact->close_day_at }}
+                                      </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="card border-0 shadow-lg card-fluid mt-4">
+                  {{-- <a href="https://api.whatsapp.com/send?phone={{ $contact->phone }}&text=Hello" style="transition: .3s; color: #393939;"> --}}
+                      <div class="card-body">
+                          <div class="media align-items-center">
+                            <div class="row g-3">
+                              <div class="col-3">
+                                <div class="media-left">
+                                    {{-- <div class="btn text-light" style="background:#25D366;">
+                                        <i class="fab fa-map fa-3x"></i>
+                                    </div> --}}
+                                    <div class="btn btn-primary text-light w-100 h-100" style="font-size: 2em;">
+                                      <i class="bi bi-clock bi-3x"></i>
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="ml-3 media-right">
+                                    <h5 class="mb-2 font-weight-light" style="color: #333;">Open Hour</h5>
+                                    <span class="font-weight-bold">
+                                      {{ $contact->open_at }} - {{ $contact->close_at }}
+                                    </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+                <div class="card border-0 shadow-lg card-fluid mt-4">
+                    {{-- <a href="https://api.whatsapp.com/send?phone={{ $contact->phone }}&text=Hello" style="transition: .3s; color: #393939;"> --}}
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                              <div class="row g-3">
+                                <div class="col-3">
+                                  <div class="media-left">
+                                      {{-- <div class="btn text-light" style="background:#25D366;">
+                                          <i class="fab fa-map fa-3x"></i>
+                                      </div> --}}
+                                      <div class="btn btn-primary text-light w-100 h-100" style="font-size: 2em;">
+                                        <i class="bi bi-globe bi-3x"></i>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div class="col-9">
+                                  <div class="ml-3 media-right">
+                                      <h5 class="mb-2 font-weight-light" style="color: #333;">Website</h5>
+                                      <span class="font-weight-bold">
+                                          {{ $contact->website }}
+                                      </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
             <div
-              class="col-lg-12 wow fadeIn"
+              class="col-lg-6 wow fadeIn"
               data-wow-delay="0.5s"
               style="min-height: 450px"
             >
@@ -164,14 +286,16 @@ data-wow-delay="0.1s"
 <div class="container py-5">
   <div class="row g-5">
     <div class="col-lg-4 col-md-6">
-      @foreach ($abouts as $about)
       <h1 class="text-white mb-4">
+        @foreach ($configs as $config)
         <img
-          class="img-fluid me-3"
-          src="{{ asset('frontend/img/icon/icon-02-light.png') }}"
-          alt=""
+        class="img-fluid me-3"
+        src="{{ asset('favicon/' . $config->favicon) }}"
+        alt=""
         />
+        @endforeach
       </h1>
+      @foreach ($abouts as $about)
       <p>
         {!! $shortenedText = Str::limit ($about->desc, 100) !!}
       </p>
@@ -231,6 +355,10 @@ data-wow-delay="0.1s"
 ><i class="bi bi-arrow-up"></i
 ></a>
 
+@foreach($contacts as $contact)
+<a href="https://wa.me/{{$contact->phone}}/?text=Hello, ada yang bisa saya bantu?" target="_blank" class="wa"><i class="bi bi-whatsapp icon"></i></a>
+@endforeach
+
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -242,5 +370,34 @@ data-wow-delay="0.1s"
 
 <!-- Template Javascript -->
 <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+<style>
+  .wa{
+          position: fixed;
+          bottom: 20px; /* Atur posisi tombol dari bawah */
+          left: 20px; /* Atur posisi tombol dari kiri */
+          color: #fff;
+          border: none;
+          padding: 10px 15px;
+          background-color: #015FC9;
+          border-radius: 50%;
+          text-align: center;
+          display: inline-block;
+          transition: background-color 0.3s ease;
+          cursor: pointer;
+          z-index: 999;
+      }
+
+      .wa:hover{
+          background-color: #8ea8df;
+          color: white;
+      }
+
+      .icon{
+        font-size: 28px;
+      }
+
+      /* i{} */
+</style>
 </body>
 </html>

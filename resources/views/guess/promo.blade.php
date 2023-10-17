@@ -1,5 +1,11 @@
 @extends('guess.layout.app')
 
+@section('title')
+  @foreach ($configs as $config)
+    <title>{{ $config->promo }}</title>
+  @endforeach
+@endsection
+
 @section('content')
     
 <section class="section-80">

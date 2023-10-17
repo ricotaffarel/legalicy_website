@@ -1,5 +1,11 @@
 @extends('guess.layout.app')
 
+@section('title')
+  @foreach ($configs as $config)
+    <title>{{ $config->about }}</title>
+  @endforeach
+@endsection
+
 @section('content')
     
 <div class="container-xxl py-5">
